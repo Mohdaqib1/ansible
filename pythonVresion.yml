@@ -8,3 +8,6 @@
     raw: script.sh
     args:
       executable: /bin/bash
+  tasks:
+    - debug:
+        msg: "This is a test"    
