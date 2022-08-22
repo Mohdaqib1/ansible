@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: yes
+
+  vars:
+   Tower_URL: ""
+   template_name: 
+   keys: ""
+
+  tasks:
+    - name:
+      uri:
+        url: "{{Tower_URL}}{{template_name}}" 
+        validate_certs: no
+        method: GET
+        headers: 
+         Authoriszation: "Bearer {{keys}}"
+         Accept: 'application/json'
+      register: template_result
+      ignore_errors: True 
+
+    - name: Pring ther value
+      degug:
+        var: template_result.json.result.
+
+    - name: Launch a Job
+      uri:
+        url:"{{Tower_URL}}job_templates/{{ template_result.json}}/launch"     
+     
