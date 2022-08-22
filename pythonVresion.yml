@@ -1,4 +1,10 @@
-- hosts: localhost
-  tasks:
-    - debug:
-        msg: "This is a test"
+---
+- name: Install python in target node with ansible
+  hosts: python
+  become: true
+  gather_facts: no
+  pre_tasks:
+  - name: install python
+    raw: script.sh
+    args:
+      executable: /bin/bash
