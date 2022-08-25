@@ -7,7 +7,6 @@
       ansible.builtin.yum:
         name:
           - postgresql
-          - postgresql-server
           - postgresql-contrib
           - postgresql-libs
           - python3-psycopg2
